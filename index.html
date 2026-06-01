@@ -1,1 +1,125 @@
-<!DOCTYPE html><html lang='de'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Bnk</title><style>body{font-family:Arial,sans-serif;background:#111;color:#fff;padding:15px;max-width:500px;margin:auto}h1{text-align:center}.card{background:#222;padding:15px;border-radius:12px;margin-bottom:12px}input{width:100%;padding:10px;margin-top:5px;box-sizing:border-box;border:none;border-radius:8px}.result{font-size:24px;font-weight:bold;color:#4caf50}.small{color:#bbb;margin-top:5px}</style></head><body><h1>🏦 Bnk</h1><div class='card'><label>Lohn (€)</label><input type='number' id='lohn' value='3289'></div><div class='card'><label>Hauskredit 1 (€)</label><input type='number' id='haus1' value='486'></div><div class='card'><label>Hauskredit 2 (€)</label><input type='number' id='haus2' value='383'></div><div class='card'><div class='small'>Nach Hauskrediten</div><div id='zwischen' class='result'></div></div><div class='card'><label>Banken (€)</label><input type='number' id='banken' value='1300'></div><div class='card'><div class='small'>Rest für Abgabenkonto</div><div id='ende' class='result'></div></div><script>function rechnen(){const lohn=Number(document.getElementById('lohn').value)||0;const haus1=Number(document.getElementById('haus1').value)||0;const haus2=Number(document.getElementById('haus2').value)||0;const banken=Number(document.getElementById('banken').value)||0;const nachHaus=lohn-haus1-haus2;const rest=nachHaus-banken;document.getElementById('zwischen').innerText=nachHaus.toLocaleString('de-DE',{style:'currency',currency:'EUR'});document.getElementById('ende').innerText=rest.toLocaleString('de-DE',{style:'currency',currency:'EUR'});}document.querySelectorAll('input').forEach(i=>i.addEventListener('input',rechnen));rechnen();</script></body></html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bnk</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
+    padding:15px;
+    max-width:500px;
+    margin:auto;
+}
+.header{
+    text-align:center;
+    margin:20px 0;
+}
+.bank-icon{
+    width:86px;
+    height:86px;
+    margin:0 auto 10px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#2f80ed,#56ccf2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+h1{
+    margin:0;
+    font-size:34px;
+}
+.card{
+    background:#222;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:12px;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    box-sizing:border-box;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+}
+.result{
+    font-size:26px;
+    font-weight:bold;
+    color:#4caf50;
+}
+.small{
+    color:#bbb;
+    margin-top:5px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="bank-icon">🏦</div>
+    <h1>Bnk</h1>
+</div>
+
+<div class="card">
+    <label>Lohn (€)</label>
+    <input type="number" id="lohn" value="3289">
+</div>
+
+<div class="card">
+    <label>Hauskredit 1 (€)</label>
+    <input type="number" id="haus1" value="486">
+</div>
+
+<div class="card">
+    <label>Hauskredit 2 (€)</label>
+    <input type="number" id="haus2" value="383">
+</div>
+
+<div class="card">
+    <div class="small">Nach Hauskrediten</div>
+    <div id="zwischen" class="result"></div>
+</div>
+
+<div class="card">
+    <label>Banken (€)</label>
+    <input type="number" id="banken" value="1300">
+</div>
+
+<div class="card">
+    <div class="small">Rest für Abgabenkonto</div>
+    <div id="ende" class="result"></div>
+</div>
+
+<script>
+function rechnen(){
+    const lohn = Number(document.getElementById('lohn').value) || 0;
+    const haus1 = Number(document.getElementById('haus1').value) || 0;
+    const haus2 = Number(document.getElementById('haus2').value) || 0;
+    const banken = Number(document.getElementById('banken').value) || 0;
+
+    const nachHaus = lohn - haus1 - haus2;
+    const rest = nachHaus - banken;
+
+    document.getElementById('zwischen').innerText =
+        nachHaus.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+
+    document.getElementById('ende').innerText =
+        rest.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+}
+
+document.querySelectorAll('input').forEach(i => {
+    i.addEventListener('input', rechnen);
+});
+
+rechnen();
+</script>
+
+</body>
+</html>
