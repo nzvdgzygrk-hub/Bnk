@@ -3,122 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bnk">
+<meta name="theme-color" content="#2f80ed">
 <title>Bnk</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACHklEQVR42u3dwW0CQQxA0TByBTRCOgx0SCNQQw6RcoiIEqRhd2y/4XN3TTJIXv2d1cAhh1Ku+f4/fL97AlMLTz5ur79/fQJIt6cC8zcoTQmZx52mdr5a2H7a73a5fX9+ACQAAAAAAAOjYfFduMTi96cnjWe4Vh9u4zBmaK9DLMzRX5h7i2x4vkLp6bt5kYXxmzmyZ5qv5+6lv/uWL52eqTzFZc64m8zYtS+4tLq1n6lJO9Zf2Kp0s7nQ/0W3OO3lqVVzZmMb4fcVjSy1avLMr7j0GH2K7ma3t8xqg3ma6b8eozZKJ5l+q8Wa9i62gDwmkqf44v4b9UsSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8boGGoZWQ9ZZZ9QAAAABJRU5ErkJggg==">
 <style>
-body{
-    font-family:Arial,sans-serif;
-    background:#111;
-    color:#fff;
-    padding:15px;
-    max-width:500px;
-    margin:auto;
-}
-.header{
-    text-align:center;
-    margin:20px 0;
-}
-.bank-icon{
-    width:86px;
-    height:86px;
-    margin:0 auto 10px;
-    border-radius:24px;
-    background:linear-gradient(135deg,#2f80ed,#56ccf2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:48px;
-    box-shadow:0 10px 25px rgba(0,0,0,.35);
-}
-h1{
-    margin:0;
-    font-size:34px;
-}
-.card{
-    background:#222;
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:12px;
-}
-input{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
-    box-sizing:border-box;
-    border:none;
-    border-radius:8px;
-    font-size:18px;
-}
-.result{
-    font-size:26px;
-    font-weight:bold;
-    color:#4caf50;
-}
-.small{
-    color:#bbb;
-    margin-top:5px;
-}
+body{font-family:Arial,sans-serif;background:#111;color:#fff;padding:15px;max-width:500px;margin:auto}.header{text-align:center;margin:20px 0}.bank-icon{width:86px;height:86px;margin:0 auto 10px;border-radius:24px;background:linear-gradient(135deg,#2f80ed,#56ccf2);display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 10px 25px rgba(0,0,0,.35)}h1{margin:0;font-size:34px}.card{background:#222;padding:15px;border-radius:12px;margin-bottom:12px}input{width:100%;padding:10px;margin-top:5px;box-sizing:border-box;border:none;border-radius:8px;font-size:18px}.result{font-size:26px;font-weight:bold;color:#4caf50}.small{color:#bbb;margin-top:5px}
 </style>
 </head>
 <body>
-
-<div class="header">
-    <div class="bank-icon">🏛️</div>
-    <h1>Bnk</h1>
-</div>
-
-<div class="card">
-    <label>Lohn (€)</label>
-    <input type="number" id="lohn" value="3289">
-</div>
-
-<div class="card">
-    <label>Hauskredit 1 (€)</label>
-    <input type="number" id="haus1" value="486">
-</div>
-
-<div class="card">
-    <label>Hauskredit 2 (€)</label>
-    <input type="number" id="haus2" value="383">
-</div>
-
-<div class="card">
-    <div class="small">Nach Hauskrediten</div>
-    <div id="zwischen" class="result"></div>
-</div>
-
-<div class="card">
-    <label>Banken (€)</label>
-    <input type="number" id="banken" value="1300">
-</div>
-
-<div class="card">
-    <div class="small">Rest für Abgabenkonto</div>
-    <div id="ende" class="result"></div>
-</div>
-
+<div class="header"><div class="bank-icon">🏛️</div><h1>Bnk</h1></div>
+<div class="card"><label>Lohn (€)</label><input type="number" id="lohn" value="3289"></div>
+<div class="card"><label>Hauskredit 1 (€)</label><input type="number" id="haus1" value="486"></div>
+<div class="card"><label>Hauskredit 2 (€)</label><input type="number" id="haus2" value="383"></div>
+<div class="card"><div class="small">Nach Hauskrediten</div><div id="zwischen" class="result"></div></div>
+<div class="card"><label>Banken (€)</label><input type="number" id="banken" value="1300"></div>
+<div class="card"><div class="small">Rest für Abgabenkonto</div><div id="ende" class="result"></div></div>
 <script>
-function rechnen(){
-    const lohn = Number(document.getElementById('lohn').value) || 0;
-    const haus1 = Number(document.getElementById('haus1').value) || 0;
-    const haus2 = Number(document.getElementById('haus2').value) || 0;
-    const banken = Number(document.getElementById('banken').value) || 0;
-
-    const nachHaus = lohn - haus1 - haus2;
-    const rest = nachHaus - banken;
-
-    document.getElementById('zwischen').innerText =
-        nachHaus.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
-
-    document.getElementById('ende').innerText =
-        rest.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
-}
-
-document.querySelectorAll('input').forEach(i => {
-    i.addEventListener('input', rechnen);
-});
-
-rechnen();
+function rechnen(){const lohn=Number(document.getElementById('lohn').value)||0;const haus1=Number(document.getElementById('haus1').value)||0;const haus2=Number(document.getElementById('haus2').value)||0;const banken=Number(document.getElementById('banken').value)||0;const nachHaus=lohn-haus1-haus2;const rest=nachHaus-banken;document.getElementById('zwischen').innerText=nachHaus.toLocaleString('de-DE',{style:'currency',currency:'EUR'});document.getElementById('ende').innerText=rest.toLocaleString('de-DE',{style:'currency',currency:'EUR'});}document.querySelectorAll('input').forEach(i=>{i.addEventListener('input',rechnen);});rechnen();
 </script>
-
 </body>
 </html>
